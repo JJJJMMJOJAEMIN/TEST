@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<body>
+<div class="layout">
+    <form action="/member/writepr" method="post">
+        <h1>회원가입</h1>
+        <h3>아이디</h3><input type="text" name="userId" id="memberId" onblur="idCheck()">
+        <br>
+        <span id="id-dup-result"></span>
+        <h3>비밀번호</h3><input type="password" name="pwd" required>
+        <br>
+        <h3>이름</h3><input type="text" name="name" required>
+        <br>
+        <button type="submit" id="앙기무띠">회원가입</button>
+    </form>
+</div>
+<script th:inline="javascript">
+    const idCheck = () => {
+        const id = document.getElementById("memberId").value;
+        const checkResult = document.getElementById("id-dup-result");
+        $.ajax({
+            type: "post",
+            url: "/member/IdCheck",
+            dataType: "text",
+            data: {
+            userId: id
+            } ,
+            success: function (result) {
+                if(result == "ok") {
+                    checkResult.innerHTML = "사용가능한 아이디 입니다";
+                    checkResult.style.color = "green";
+            } else {
+                    checkResult.innerHTML = "이미 사용중인 아이디 입니다.";
+                    checkResult.style.color = "red";
+            }
+
+            },
+            error: function () {
+            alert("ajax 실패");
+            }
+        });
+    }
+
+
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>번호</td>
+        <td>아이디</td>
+        <td>비밀번호</td>
+        <td>이름</td>
+    </tr>
+    <tr>
+        <td th:text="${member.idx}"></td>
+        <td th:text="${member.userId}"></td>
+        <td th:text="${member.pwd}"></td>
+        <td th:text="${member.name}"></td>
+    </tr>
+    <tr>
+        <td>
+            <a th:href="@{/member/delete(idx=${member.idx})}">글 삭제하기</a>
+            <a th:href="@{/member/modify/{idx}(idx= ${member.idx})}">글 수정하기</a>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

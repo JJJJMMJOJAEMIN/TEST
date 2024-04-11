@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="layout">
+    <table>
+        <thead>
+        <tr>
+            <td>회원번호</td>
+            <td>아이디</td>
+            <td>이름</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${list}">
+            <td th:text="${member.idx}"></td>
+            <td>
+                <a th:text="${member.userId}" th:href="@{/member/view(idx=${member.idx})}"></a></td>
+            <td th:text="${member.name}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
